@@ -1,0 +1,62 @@
+h1,
+h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+.bdr-layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .el-header{
+    color: #fff;
+    background: #363b3e;
+    box-shadow: 0 5px 5px rgba(0,0,0,.35);
+    h1 {
+      font-size: 26px;
+      margin: 0;
+      line-height: 60px;
+    }
+  }
+  .el-aside {
+    padding: 0 20px;
+    height: 100%;
+    background: #363b3e;
+  }
+  .el-container{
+    flex: 1;
+  }
+}
+.bdr-taglist {
+  .el-tag {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    margin-left: 6px;
+    &+.el-tag {
+      // margin-left: 6px;
+    }
+  }
+}
+// a4容器
+.bdr-print {
+  width: 210mm;
+  height: 297mm;
+  border: 1px solid#42b983;
+  margin: 0 auto;
+}
+
+@media print {
+  .bdr-print {
+    width: 210mm;
+    height: 297mm;
+  }
+}
