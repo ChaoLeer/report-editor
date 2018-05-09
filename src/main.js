@@ -8,9 +8,11 @@ import App from './App'
 import router from './router'
 
 import './style/index.scss'
+import VueReportBase from 'report-base'
+console.info(VueReportBase)
 Vue.config.productionTip = false
-
 Vue.use(ElementUI)
+Vue.use(VueReportBase)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
