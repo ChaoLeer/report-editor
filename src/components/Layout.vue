@@ -4,36 +4,27 @@
       <h1>报表生成 <small>【A4尺寸210mm×297mm】</small></h1>
     </el-header>
     <el-container>
-      <el-aside class="bdr-layout__aside" width="200px">
-        <div class="bdr-taglist">
-          <el-tag
-            v-for="(tag,idx) in tagList"
-            :key="idx"
-            size="mini">{{tag.text}}</el-tag>
-        </div>
-      </el-aside>
       <el-main>
         <bdr-editor></bdr-editor>
       </el-main>
+      <el-aside class="bdr-layout__aside" width="400px">
+        <bdr-layout-aside></bdr-layout-aside>
+      </el-aside>
     </el-container>
   </el-container>
 </template>
 
 <script>
 import BdrEditor from './Editor'
+import BdrLayoutAside from './LayoutAside'
 export default {
   name: 'HelloWorld',
   components: {
-    BdrEditor
+    BdrEditor,
+    BdrLayoutAside
   },
   data () {
-    return {
-      tagList: [{
-        text: 'row'
-      }, {
-        text: 'label'
-      }]
-    }
+    return {}
   }
 }
 </script>

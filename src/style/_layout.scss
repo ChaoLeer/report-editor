@@ -20,6 +20,7 @@ a {
   .el-header{
     color: #fff;
     background: #363b3e;
+    z-index: 1;
     box-shadow: 0 5px 5px rgba(0,0,0,.35);
     h1 {
       font-size: 26px;
@@ -28,9 +29,28 @@ a {
     }
   }
   .el-aside {
-    padding: 0 20px;
+    // padding: 0 20px;
     height: 100%;
+    padding-top: 10px;
     background: #363b3e;
+    .el-tabs__nav {
+      transform: translateX(-50%) !important;
+      margin-left: 50%;
+      .el-tabs__item:not(.is-active) {
+        color: #666;
+      }
+      .el-tabs__active-bar{
+        background-color: #fff;
+        // left: -5px;
+        // right: -5px;
+      }
+      .el-tabs__item.is-active {
+        color: #fff;
+      }
+    }
+    .el-tabs__nav-wrap::after {
+      background-color: #666;
+    }
   }
   .el-container{
     flex: 1;
