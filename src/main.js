@@ -9,7 +9,7 @@ import router from './router'
 
 import './style/index.scss'
 import VueReportBase from 'report-base'
-console.info(VueReportBase)
+console.info('报表插件', VueReportBase)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueReportBase)
