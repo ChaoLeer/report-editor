@@ -1,13 +1,12 @@
 /** 【A4尺寸210mm×297mm】 */
 <template>
-  <div class="bdr-print">
-    <rp-edit></rp-edit>
+  <div class="bdr-print">{{option}}
     <rp-report :option="option"></rp-report>
   </div>
 </template>
 
 <script>
-
+import dataset from '../assets/dataset'
 const header = [
   {
     type: 'TextBox',
@@ -201,6 +200,7 @@ const PageFooterElement = [
     }
   }
 ]
+const resData = dataset.data
 export default {
   data () {
     return {
@@ -209,7 +209,8 @@ export default {
         pFooter: PageFooterElement,
         header: header,
         master: MasterDataElement,
-        footer: FooterElement
+        footer: FooterElement,
+        dataset: resData
       }
     }
   }
