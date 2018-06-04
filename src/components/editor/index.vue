@@ -1,12 +1,12 @@
 /** 【A4尺寸210mm×297mm】 */
 <template>
-  <div class="bdr-print">{{option}}
-    <rp-report :option="option"></rp-report>
+  <div class="bdr-print">
+    <rp-report :option="option" :dataset="dataset"></rp-report>
   </div>
 </template>
 
 <script>
-import dataset from '../assets/dataset'
+import dataset from '@/assets/dataset'
 const header = [
   {
     type: 'TextBox',
@@ -210,8 +210,19 @@ export default {
         header: header,
         master: MasterDataElement,
         footer: FooterElement,
-        dataset: resData
-      }
+        reportInfo: {
+          page: {
+            size: 'A4', // 纸张大小名称
+            width: '210', // 宽
+            height: '297', // 高
+            left: 5, // 左边距
+            top: 5, // 上边距
+            right: 5, // 右边距
+            bottom: 5 // 底边距
+          }
+        }
+      },
+      dataset: resData
     }
   }
 }

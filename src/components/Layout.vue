@@ -5,26 +5,34 @@
     </el-header>
     <el-container>
       <el-main>
-        <bdr-editor></bdr-editor>
+        {{options}}
+        <!-- <bdr-editor part="pheader"></bdr-editor> -->
       </el-main>
       <el-aside class="bdr-layout__aside" width="400px">
-        <bdr-layout-aside></bdr-layout-aside>
+        <bdr-layout-aside :data.sync="options"></bdr-layout-aside>
       </el-aside>
     </el-container>
   </el-container>
 </template>
 
 <script>
-import BdrEditor from './Editor'
 import BdrLayoutAside from './LayoutAside'
+import dataset from '../assets/dataset'
+import options from './option'
+const resData = dataset.data
 export default {
   name: 'HelloWorld',
   components: {
-    BdrEditor,
     BdrLayoutAside
   },
   data () {
-    return {}
+    return {
+      options: options,
+      data: resData
+    }
+  },
+  created () {
+    console.info(options)
   }
 }
 </script>

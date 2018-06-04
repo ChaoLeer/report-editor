@@ -51,6 +51,11 @@ a {
     .el-tabs__nav-wrap::after {
       background-color: #666;
     }
+    .bdr-title {
+      line-height: 32px;
+      padding: 0 12px;
+      color: #eaeaea;
+    }
   }
   .el-container{
     flex: 1;

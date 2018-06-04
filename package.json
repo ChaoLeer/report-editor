@@ -11,11 +11,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "element-ui": "^2.3.7",
     "mockjs": "^1.0.1-beta3",
     "normalize-css": "^2.3.1",
     "velocity-animate": "^1.5.1",
     "vue": "^2.5.2",
+    "vue-codemirror": "^4.0.5",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
