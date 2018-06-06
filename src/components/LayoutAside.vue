@@ -5,7 +5,7 @@
       :key="idx"
       size="mini">{{tag.text}}</el-tag>
   </div> -->
-  <el-tabs v-model="activeName" @tab-click="handleClick" lazy>
+  <!-- <el-tabs v-model="activeName" @tab-click="handleClick" lazy>
     <el-tab-pane label="报表" name="first">
       <span class="bdr-title">报表头部</span>
       <bdr-editor v-bind="$attrs" part="pheader"></bdr-editor>
@@ -22,17 +22,19 @@
     </el-tab-pane>
     <el-tab-pane label="页面" name="third">
       <bdr-editor v-bind="$attrs" part="page"></bdr-editor>
-      <!-- <rp-edit  part="page" ></rp-edit> -->
     </el-tab-pane>
-  </el-tabs>
+  </el-tabs> -->
+  <report-editor v-bind="$attrs" :data.sync="$attrs.data"></report-editor>
 </template>
 
 <script>
 import BdrEditor from './editor/Editor'
+import ReportEditor from './editor'
 import EventBus from './eventbus'
 export default {
   components: {
-    BdrEditor
+    BdrEditor,
+    ReportEditor
   },
   data () {
     return {

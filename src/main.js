@@ -15,7 +15,7 @@ console.info('报表插件', Report)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 // Vue.use(VueReportBase)
-Vue.component('report', Report)
+// Vue.component('report', Report)
 Vue.use(Report)
 /* eslint-disable no-new */
 new Vue({

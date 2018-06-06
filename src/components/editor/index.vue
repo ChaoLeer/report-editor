@@ -1,229 +1,97 @@
-/** 【A4尺寸210mm×297mm】 */
 <template>
-  <div class="bdr-print">
-    <rp-report :option="option" :dataset="dataset"></rp-report>
-  </div>
+  <codemirror ref="codeMirror"
+    :style="{width: width}"
+    :value="value" @input="updateReportData($event)" :options="codemirrorOption"></codemirror>
 </template>
 
 <script>
-import dataset from '@/assets/dataset'
-const header = [
-  {
-    type: 'TextBox',
-    name: 'name',
-    text: '姓名',
-    style: {
-      width: 40,
-      color: 'blue'
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'sex',
-    text: '性别',
-    style: {
-      width: 15,
-      color: 'red'
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'age',
-    text: '年龄',
-    style: {
-      width: 15,
-      color: 'red'
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'province',
-    text: '省份',
-    style: {
-      width: 50,
-      color: 'red'
-    }
-  }
-]
-const MasterDataElement = [
-  {
-    type: 'TextBox',
-    name: 'name',
-    text: '{name}',
-    style: {
-      width: 40,
-      color: 'blue'
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'sex',
-    text: '{sex + $curRow}',
-    style: {
-      width: 15,
-      color: 'red'
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'age',
-    text: '{age + ageUnit}',
-    style: {
-      width: '15mm',
-      color: 'red'
-    },
-    TextRendering: (rows, style) => {
-      if (rows.age >= 80) {
-        style.color = 'green'
-      }
-      return style
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'province',
-    text: '{province.substr(0,2)}',
-    style: {
-      width: '20mm',
-      color: 'red'
-    }
-  }
-]
-const FooterElement = [
-  {
-    type: 'TextBox',
-    name: 'sum',
-    text: '平均年龄',
-    style: {
-      top: 0,
-      left: 0,
-      width: 40,
-      color: '#333'
-    }
-  },
-  {
-    type: 'CalcText',
-    bind: 'age',
-    calc: 'avg',
-    style: {
-      width: 40,
-      top: 0,
-      left: 40,
-      color: 'blue',
-      marginLeft: 15
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'count',
-    text: '合计人次',
-    style: {
-      top: 10,
-      left: 0,
-      width: 40,
-      color: '#333'
-    }
-  },
-  {
-    type: 'CalcText',
-    bind: 'age',
-    calc: 'count',
-    style: {
-      width: 40,
-      top: 10,
-      left: 40,
-      color: 'blue',
-      marginLeft: 15
-    }
-  },
-  {
-    type: 'TextBox',
-    name: 'count',
-    text: '合计年龄',
-    style: {
-      top: 20,
-      left: 0,
-      width: 40,
-      color: '#333'
-    }
-  },
-  {
-    type: 'CalcText',
-    bind: 'age',
-    calc: 'sum',
-    style: {
-      width: 40,
-      top: 20,
-      left: 40,
-      color: 'blue',
-      marginLeft: 15
-    }
-  }
-]
-const PageHeaderElement = [
-  {
-    type: 'TextBox',
-    name: 'count',
-    text: 'xxx统计报表',
-    style: {
-      top: 0,
-      left: 80,
-      fontSize: '30px',
-      width: 40,
-      color: '#333'
-    }
-  }
-]
-
-const PageFooterElement = [
-  {
-    type: 'TextBox',
-    name: 'sum',
-    text: '当前页平均年龄',
-    style: {
-      top: 0,
-      left: 0,
-      width: 40,
-      color: '#333'
-    }
-  },
-  {
-    type: 'CalcText',
-    bind: 'age',
-    calc: 'avg',
-    style: {
-      width: 40,
-      top: 0,
-      left: 40,
-      color: '#ff9900',
-      marginLeft: 15
-    }
-  }
-]
-const resData = dataset.data
+import 'codemirror/lib/codemirror.css'
+import { codemirror } from 'vue-codemirror'
+// language
+import 'codemirror/mode/javascript/javascript.js'
+// theme css
+import 'codemirror/theme/monokai.css'
+import EventBus from '../eventbus'
+// import ReportMixin from './mixins/report'
 export default {
+  name: 'BdrEdit',
+  // mixins: [ReportMixin],
+  components: {
+    codemirror
+  },
+  props: {
+    width: {
+      type: String,
+      default: '100%'
+    },
+    // part: {
+    //   validator: function (value) {
+    //     // 这个值必须匹配下列字符串中的一个
+    //     return ['page', 'pheader', 'pfooter', 'master', 'mheader', 'mfooter'].indexOf(value) !== -1
+    //   }
+    // },
+    data: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  },
   data () {
     return {
-      option: {
-        pHeader: PageHeaderElement,
-        pFooter: PageFooterElement,
-        header: header,
-        master: MasterDataElement,
-        footer: FooterElement,
-        reportInfo: {
-          page: {
-            size: 'A4', // 纸张大小名称
-            width: '210', // 宽
-            height: '297', // 高
-            left: 5, // 左边距
-            top: 5, // 上边距
-            right: 5, // 右边距
-            bottom: 5 // 底边距
-          }
-        }
+      value: '',
+      // ********************************
+      codemirrorOption: {
+        tabSize: 4,
+        styleActiveLine: true,
+        lineNumbers: true,
+        line: true,
+        mode: {
+          name: 'text/javascript',
+          json: true,
+          mime: 'text/javascript'
+        },
+        theme: 'monokai'
       },
-      dataset: resData
+      baseOption: {}
+    }
+  },
+  created () {
+    const vm = this
+    vm.value = JSON.stringify(vm.data, null, '  ')
+    EventBus.$on('tab-click', function () {
+      vm.refresh()
+    })
+  },
+  methods: {
+    updateReportData (newCode, type) {
+      const vm = this
+      const tmpData = JSON.parse(newCode, null, '  ')
+      vm.$emit('update:data', tmpData)
+    },
+    refresh () {
+      this.$refs['codeMirror'].codemirror.refresh()
     }
   }
 }
 </script>
+
+<style lang="scss">
+  .cm-string,
+  .CodeMirror-linenumber,
+   .CodeMirror-line * {
+    color: #ccc;
+    background: none;
+    font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    tab-size: 2;
+    hyphens: none;
+    font-size: 14px;
+    letter-spacing: .01em;
+  }
+</style>
