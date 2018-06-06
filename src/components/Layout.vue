@@ -7,6 +7,7 @@
       <el-main>
         {{options}}
         <!-- <bdr-editor part="pheader"></bdr-editor> -->
+        <report :option="options"></report>
       </el-main>
       <el-aside class="bdr-layout__aside" width="400px">
         <bdr-layout-aside :data.sync="options"></bdr-layout-aside>

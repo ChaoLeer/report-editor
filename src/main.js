@@ -8,11 +8,15 @@ import App from './App'
 import router from './router'
 
 import './style/index.scss'
-import VueReportBase from 'report-base'
-console.info('报表插件', VueReportBase)
+// import VueReportBase from 'VueReportBase'
+import Report from 'bd-report'
+
+console.info('报表插件', Report)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-Vue.use(VueReportBase)
+// Vue.use(VueReportBase)
+Vue.component('report', Report)
+Vue.use(Report)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
