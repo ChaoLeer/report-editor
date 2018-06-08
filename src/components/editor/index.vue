@@ -56,6 +56,12 @@ export default {
       baseOption: {}
     }
   },
+  watch: {
+    data (val) {
+      const vm = this
+      vm.value = JSON.stringify(vm.data, null, '  ')
+    }
+  },
   created () {
     const vm = this
     vm.value = JSON.stringify(vm.data, null, '  ')

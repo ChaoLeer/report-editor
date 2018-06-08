@@ -11,13 +11,18 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@antv/g6": "^2.0.0",
+    "@antv/g6-editor": "^1.0.1",
     "axios": "^0.18.0",
+    "clipboard": "^2.0.1",
     "element-ui": "^2.3.7",
     "mockjs": "^1.0.1-beta3",
     "normalize-css": "^2.3.1",
+    "v-contextmenu": "^2.7.0",
     "velocity-animate": "^1.5.1",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.5",
+    "vue-draggable-resizable": "^1.7.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

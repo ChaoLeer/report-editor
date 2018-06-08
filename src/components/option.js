@@ -193,7 +193,8 @@
 // ]
 export default [
   {
-    name: '病案加工工作量统计报表',
+    name: 'XXXX统计报表',
+    plugin: {},
     header: {
       height: 100,
       layout: 'fix',
@@ -208,64 +209,6 @@ export default [
             fontSize: '22px',
             width: '100%',
             height: 10
-          }
-        },
-        {
-          text: '姓名',
-          style: {
-            top: 10,
-            left: 0,
-            width: 10
-          }
-        },
-        {
-          text: '{name}',
-          style: {
-            borderBottom: '1px solid #333',
-            color: 'red',
-            width: 20
-          },
-          func: function (value) {
-            if (typeof value === 'object') {
-              return value.getFullYear() + '-' + value.getMouth
-            } else {
-              return 2
-            }
-          }
-        },
-        {
-          text: '性别',
-          style: {
-            width: 10
-          }
-        },
-        {
-          text: '{sex}',
-          style: {
-            border: '1px solid #333',
-            width: 6
-          }
-        },
-        {
-          text: '1：男，2：女',
-          style: {
-            width: 20,
-            marginLeft: 1
-          }
-        },
-        {
-          text: '出生日期',
-          style: {
-            width: 20
-          }
-        },
-        {
-          text: '出生日期',
-          style: {
-            top: 20,
-            left: 0,
-            width: 20,
-            marginLeft: 5
           }
         }
       ]

@@ -10,7 +10,10 @@ import router from './router'
 import './style/index.scss'
 // import VueReportBase from 'VueReportBase'
 import Report from 'bd-report'
+import contentmenu from 'v-contextmenu'
+import 'v-contextmenu/dist/index.css'
 
+Vue.use(contentmenu)
 console.info('报表插件', Report)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
